@@ -15,29 +15,30 @@ class CountdownTimer {
     start = () => {
 
     setInterval(() => {
-        const currentDate = Date.now();
-        const deltaTime = this.targetDate.getTime() - currentDate;
+    const currentDate = Date.now()
+    const deltaTime = this.targetDate.getTime() - currentDate
 
-        const time = getTimeComponents(deltaTime);
-        const {days, hours, mins, secs} = time;
-
-        this.refs.fieldDays.textContent = days;
-        this.refs.fieldHours.textContent = hours;
-        this.refs.fieldMins.textContent = mins;
-        this.refs.fieldSecs.textContent = secs;
-    }, 1000)
+    const time = getTimeComponents(deltaTime)
+    const {days, hours, mins, secs} = time;
+  
+    this.refs.fieldDays.textContent = days;
+    this.refs.fieldHours.textContent = hours;
+    this.refs.fieldMins.textContent = mins;
+    this.refs.fieldSecs.textContent = secs;
+}, 1000)
 }
 
 }
 
 function getTimeComponents(time) {
     let days = Math.floor(time / (1000 * 60 * 60 * 24));
+    days = String(days).padStart(2, "0");
     let hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    hours = String(hours).padStart(2, "0")
+    hours = String(hours).padStart(2, "0");
     let mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
-    mins = String(mins).padStart(2, "0")
+    mins = String(mins).padStart(2, "0");
     let secs = Math.floor((time % (1000 * 60)) / 1000);
-    secs = String(secs).padStart(2, "0")
+    secs = String(secs).padStart(2, "0");
 
     return {days, hours, mins, secs};
 };
@@ -48,4 +49,4 @@ const timer1 = new CountdownTimer({
     targetDate: new Date('Dec 31, 2021'),
   });
 
-  //timer1.start();
+  timer1.start();
