@@ -21,13 +21,22 @@ class CountdownTimer {
     const time = getTimeComponents(deltaTime)
     const {days, hours, mins, secs} = time;
   
-    this.refs.fieldDays.textContent = days;
-    this.refs.fieldHours.textContent = hours;
-    this.refs.fieldMins.textContent = mins;
-    this.refs.fieldSecs.textContent = secs;
+   
+    insertData(this.refs.fieldDays, days);
+    insertData(this.refs.fieldHours, hours);
+    insertData(this.refs.fieldMins, mins);
+    insertData(this.refs.fieldSecs, secs)
+    //this.refs.fieldDays.textContent = days;
+    //this.refs.fieldHours.textContent = hours;
+    //this.refs.fieldMins.textContent = mins;
+    //this.refs.fieldSecs.textContent = secs;
 }, 1000)
 }
 
+}
+
+function insertData(place, value) {
+    place.textContent = value
 }
 
 function getTimeComponents(time) {
