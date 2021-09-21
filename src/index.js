@@ -1,27 +1,26 @@
 import './sass/main.scss';
 
 class CountdownTimer {
-   constructor ({selector, targetDate}) {
-    this.selector = selector;
-    this.targetDate = targetDate;
-    this.refs = {
-        fieldDays : document.querySelector(`${this.selector} span [data-value="days"]`),
-        fieldHours : document.querySelector(`${this.selector} span [data-value="hours"]`),
-        fieldMins : document.querySelector(`${this.selector} span [data-value="mins"]`),
-        fieldSecs : document.querySelector(`${this.selector} span [data-value="secs"]`)
-    };
+    constructor({selector, targetDate}){
+        this.selector = selector;
+        this.targetDate = targetDate;
+        this.refs = {
+            fieldDays : document.querySelector(`${this.selector} span[data-value="days"]`),
+            fieldHours : document.querySelector(`${this.selector} span[data-value="hours"]`),
+            fieldMins : document.querySelector(`${this.selector} span[data-value="mins"]`),
+            fieldSecs : document.querySelector(`${this.selector} span[data-value="secs"]`),
+        }
     }
 
-    start = () => {
+    start()  {
 
     setInterval(() => {
-    const currentDate = Date.now()
-    const deltaTime = this.targetDate.getTime() - currentDate
+    let currentDate = Date.now()
+    let deltaTime = this.targetDate.getTime() - currentDate
 
     const time = getTimeComponents(deltaTime)
     const {days, hours, mins, secs} = time;
   
-   
     insertData(this.refs.fieldDays, days);
     insertData(this.refs.fieldHours, hours);
     insertData(this.refs.fieldMins, mins);
@@ -41,7 +40,7 @@ function insertData(place, value) {
 
 function getTimeComponents(time) {
     let days = Math.floor(time / (1000 * 60 * 60 * 24));
-    days = String(days).padStart(2, "0");
+    days = String(days).padStart(3, "0");
     let hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     hours = String(hours).padStart(2, "0");
     let mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
